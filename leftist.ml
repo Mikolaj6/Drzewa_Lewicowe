@@ -21,12 +21,12 @@ let rec join q_a q_b =
 			if k_a>k_b then join q_b q_a
 			else 
 				let joined = join r q_b in
-				let rank_left = rank q_a in
+				let rank_left = rank l in
 				let rank_right = rank joined in
-				if rank_right>rank_left then
-					Node(joined,k_a,l,rank_left+1)
-				else
+				if rank_left>=rank_right then
 					Node(l,k_a,joined,rank_right+1)
+				else
+					Node(joined,k_a,l,rank_left+1)
 
 let add x q =
 	join (singleton x) q
